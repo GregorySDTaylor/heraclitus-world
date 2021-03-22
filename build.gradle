@@ -1,0 +1,70 @@
+buildscript {
+    ext.kotlinVersion = '1.4.31'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+
+    }
+}
+
+allprojects {
+    apply plugin: "eclipse"
+
+    version = '1.0'
+    ext {
+        appName = "HeraclitusWorld"
+        gdxVersion = '1.9.14'
+        ktxVersion = '1.9.14-b1'
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+        google()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+    }
+}
+
+project(":desktop") {
+    apply plugin: "kotlin"
+
+
+    dependencies {
+        implementation project(":core")
+        implementation "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+    }
+}
+
+project(":core") {
+    apply plugin: "kotlin"
+
+
+    dependencies {
+        api "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+        api "com.badlogicgames.gdx:gdx:$gdxVersion"
+        api "io.github.libktx:ktx-log:$ktxVersion"
+        api "io.github.libktx:ktx-scene2d:$ktxVersion"
+        api "io.github.libktx:ktx-async:$ktxVersion"
+        api "io.github.libktx:ktx-box2d:$ktxVersion"
+        api "io.github.libktx:ktx-inject:$ktxVersion"
+        api "io.github.libktx:ktx-app:$ktxVersion"
+        api "io.github.libktx:ktx-math:$ktxVersion"
+        api "io.github.libktx:ktx-assets:$ktxVersion"
+        api "io.github.libktx:ktx-i18n:$ktxVersion"
+        api "io.github.libktx:ktx-actors:$ktxVersion"
+        api "io.github.libktx:ktx-collections:$ktxVersion"
+        api "io.github.libktx:ktx-style:$ktxVersion"
+        api "io.github.libktx:ktx-graphics:$ktxVersion"
+    }
+}
