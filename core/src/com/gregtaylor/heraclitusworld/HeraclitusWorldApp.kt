@@ -3,6 +3,8 @@ package com.gregtaylor.heraclitusworld
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.OrthographicCamera
+import com.badlogic.gdx.graphics.g2d.PolygonBatch
+import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.utils.viewport.StretchViewport
 import ktx.app.KtxGame
@@ -13,6 +15,7 @@ class HeraclitusWorldApp : KtxGame<Screen>() {
 	var height = 0f
 
 	lateinit var spriteBatch: SpriteBatch
+	lateinit var polygonBatch: PolygonSpriteBatch
 	lateinit var camera: OrthographicCamera
 	lateinit var view: StretchViewport
 	lateinit var world: World
@@ -23,6 +26,7 @@ class HeraclitusWorldApp : KtxGame<Screen>() {
 		height = Gdx.graphics.height.toFloat()
 
 		spriteBatch = SpriteBatch()
+		polygonBatch = PolygonSpriteBatch()
 		camera = OrthographicCamera(this.width, this.height)
 		view = StretchViewport(480f, 360f, this.camera)
 
@@ -32,8 +36,9 @@ class HeraclitusWorldApp : KtxGame<Screen>() {
 	}
 
 	override fun dispose() {
-		spriteBatch.dispose()
 		world.dispose()
+		spriteBatch.dispose()
+		polygonBatch.dispose()
 	}
 
 }
