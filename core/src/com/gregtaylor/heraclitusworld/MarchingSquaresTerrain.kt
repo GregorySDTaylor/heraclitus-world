@@ -53,11 +53,11 @@ class MarchingSquaresTerrain(var valueGrid: MutableList<MutableList<Float>>) {
 	}
 
 	fun drawSprites(spriteBatch: SpriteBatch) {
-		for (row in marchingSquares) {
-			for (marchingSquare in row) {
-				marchingSquare.drawSprites(spriteBatch)
-			}
-		}
+//		for (row in marchingSquares) {
+//			for (marchingSquare in row) {
+//				marchingSquare.drawSprites(spriteBatch)
+//			}
+//		}
 	}
 
 	fun dispose() {

@@ -1,0 +1,16 @@
+kdotjpg/opensimplex2/OpenSimplex2S.java
+ kdotjpg.opensimplex2.OpenSimplex2S
+ kdotjpg.opensimplex2.OpenSimplex2S$Grad2
+ kdotjpg.opensimplex2.OpenSimplex2S$Grad3
+ kdotjpg.opensimplex2.OpenSimplex2S$Grad4
+ kdotjpg.opensimplex2.OpenSimplex2S$LatticePoint2D
+ kdotjpg.opensimplex2.OpenSimplex2S$LatticePoint3D
+ kdotjpg.opensimplex2.OpenSimplex2S$LatticePoint4D
+kdotjpg/opensimplex2/OpenSimplex2F.java
+ kdotjpg.opensimplex2.OpenSimplex2F
+ kdotjpg.opensimplex2.OpenSimplex2F$Grad2
+ kdotjpg.opensimplex2.OpenSimplex2F$Grad3
+ kdotjpg.opensimplex2.OpenSimplex2F$Grad4
+ kdotjpg.opensimplex2.OpenSimplex2F$LatticePoint2D
+ kdotjpg.opensimplex2.OpenSimplex2F$LatticePoint3D
+ kdotjpg.opensimplex2.OpenSimplex2F$LatticePoint4D
