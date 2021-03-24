@@ -1,5 +1,7 @@
 package com.gregtaylor.heraclitusworld
 
+import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.math.Vector2
 
@@ -21,6 +23,7 @@ class World(private val application: HeraclitusWorldApp) : KtxScreen {
 		// in Km, where 0 is lowest point of ocean
 		val heightGrid = generateRandomNoiseGrid()
 		marchingSquaresTerrain = MarchingSquaresTerrain(heightGrid)
+		marchingSquaresTerrain.update(generateRandomNoiseGrid(), seaLevel, mapResolution.toFloat(), Vector2(0.toFloat(),0.toFloat()))
 	}
 
 	private fun generateRandomNoiseGrid() : MutableList<MutableList<Float>> {
@@ -36,7 +39,9 @@ class World(private val application: HeraclitusWorldApp) : KtxScreen {
 	}
 
 	override fun render(delta: Float) {
-		marchingSquaresTerrain.update(generateRandomNoiseGrid(), seaLevel, mapResolution.toFloat(), Vector2(0.toFloat(),0.toFloat()))
+//		marchingSquaresTerrain.update(generateRandomNoiseGrid(), seaLevel, mapResolution.toFloat(), Vector2(0.toFloat(),0.toFloat()))
+		Gdx.gl.glClearColor(0f, 0f, 1f, 1f)
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
 		application.polygonBatch.use {
 			marchingSquaresTerrain.drawPolygons(it)
 		}

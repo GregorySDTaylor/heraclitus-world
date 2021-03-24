@@ -18,33 +18,21 @@ class MarchingSquare(
 	var scale: Float = 0f
 ) {
 
-	private val greenPixMap = Pixmap(1, 1, Pixmap.Format.RGBA8888)
-	private val solidGreen: Texture
-	private val greenTextureRegion: TextureRegion
+	private val whitePixMap = Pixmap(1, 1, Pixmap.Format.RGBA8888)
+	private val whiteTexture: Texture
+	private val whiteTextureRegion: TextureRegion
 
 	init {
-		greenPixMap.setColor(GREEN)
-		greenPixMap.fill()
-		solidGreen = Texture(greenPixMap)
-		greenTextureRegion = TextureRegion(solidGreen)
-	}
-
-	private val bluePixMap = Pixmap(1, 1, Pixmap.Format.RGBA8888)
-	private val solidBlue: Texture
-	private val blueTextureRegion: TextureRegion
-
-	init {
-		bluePixMap.setColor(BLUE)
-		bluePixMap.fill()
-		solidBlue = Texture(bluePixMap)
-		blueTextureRegion = TextureRegion(solidBlue)
+		whitePixMap.setColor(WHITE)
+		whitePixMap.fill()
+		whiteTexture = Texture(whitePixMap)
+		whiteTextureRegion = TextureRegion(whiteTexture)
 	}
 
 	private val triangulator = EarClippingTriangulator()
 	private var vertices = floatArrayOf()
-	private var textureRegion = greenTextureRegion
+	private var textureRegion = whiteTextureRegion
 	private val font = BitmapFont()
-	private val nodes = listOf(bottomLeft, bottomRight, topLeft, topRight)
 
 	fun update() {
 		val half = scale/2
@@ -70,14 +58,12 @@ class MarchingSquare(
 					bottomLeft.x, bottomLeft.y,
 					bottomLeft.x + half, bottomLeft.y,
 					bottomLeft.x, bottomLeft.y + half)
-				textureRegion = greenTextureRegion
 			}
 			2 -> {
 				vertices = floatArrayOf(
 					bottomRight.x, bottomRight.y,
 					bottomRight.x - half, bottomRight.y,
 					bottomRight.x, bottomRight.y + half)
-				textureRegion = greenTextureRegion
 			}
 			3 -> {
 				vertices = floatArrayOf(
@@ -85,14 +71,12 @@ class MarchingSquare(
 					bottomRight.x, bottomRight.y,
 					bottomRight.x, bottomRight.y+ half,
 					bottomLeft.x, bottomLeft.y+ half)
-				textureRegion = greenTextureRegion
 			}
 			4 -> {
 				vertices = floatArrayOf(
 					topRight.x, topRight.y,
 					topRight.x - half, topRight.y,
 					topRight.x, topRight.y - half)
-				textureRegion = greenTextureRegion
 			}
 			5 -> {
 				vertices = floatArrayOf(
@@ -102,7 +86,6 @@ class MarchingSquare(
 					topRight.x, topRight.y,
 					topRight.x - half, topRight.y,
 					bottomLeft.x, bottomLeft.y + half)
-				textureRegion = greenTextureRegion
 			}
 			6 -> {
 				vertices = floatArrayOf(
@@ -110,7 +93,6 @@ class MarchingSquare(
 					topRight.x, topRight.y,
 					bottomRight.x, bottomRight.y,
 					bottomRight.x - half, bottomRight.y)
-				textureRegion = greenTextureRegion
 			}
 			7 -> {
 				vertices = floatArrayOf(
@@ -119,14 +101,12 @@ class MarchingSquare(
 					topRight.x, topRight.y,
 					topLeft.x + half, topLeft.y,
 					topLeft.x, topLeft.y - half)
-				textureRegion = greenTextureRegion
 			}
 			8 -> {
 				vertices = floatArrayOf(
 					topLeft.x, topLeft.y,
 					topLeft.x + half, topLeft.y,
 					topLeft.x, topLeft.y - half)
-				textureRegion = greenTextureRegion
 			}
 			9 -> {
 				vertices = floatArrayOf(
@@ -134,7 +114,6 @@ class MarchingSquare(
 					topLeft.x + half, topLeft.y,
 					bottomLeft.x + half, bottomLeft.y,
 					bottomLeft.x, bottomLeft.y)
-				textureRegion = greenTextureRegion
 			}
 			10 -> {
 				vertices = floatArrayOf(
@@ -144,7 +123,6 @@ class MarchingSquare(
 					bottomRight.x, bottomRight.y,
 					bottomRight.x - half, bottomRight.y,
 					topLeft.x, topLeft.y - half)
-				textureRegion = greenTextureRegion
 			}
 			11 -> {
 				vertices = floatArrayOf(
@@ -153,7 +131,6 @@ class MarchingSquare(
 					topRight.x, topRight.y - half,
 					topRight.x - half, topRight.y,
 					topLeft.x, topLeft.y)
-				textureRegion = greenTextureRegion
 			}
 			12 -> {
 				vertices = floatArrayOf(
@@ -161,7 +138,6 @@ class MarchingSquare(
 					bottomRight.x, bottomRight.y + half,
 					topRight.x, topRight.y,
 					topLeft.x, topLeft.y)
-				textureRegion = greenTextureRegion
 			}
 			13 -> {
 				vertices = floatArrayOf(
@@ -170,7 +146,6 @@ class MarchingSquare(
 					bottomRight.x, bottomRight.y + half,
 					topRight.x, topRight.y,
 					topLeft.x, topLeft.y)
-				textureRegion = greenTextureRegion
 			}
 			14 -> {
 				vertices = floatArrayOf(
@@ -179,7 +154,6 @@ class MarchingSquare(
 					bottomRight.x, bottomRight.y,
 					topRight.x, topRight.y,
 					topLeft.x, topLeft.y)
-				textureRegion = greenTextureRegion
 			}
 			15 -> {
 				vertices = floatArrayOf(
@@ -187,7 +161,6 @@ class MarchingSquare(
 					bottomRight.x, bottomRight.y,
 					topRight.x, topRight.y,
 					topLeft.x, topLeft.y)
-				textureRegion = greenTextureRegion
 			}
 		}
 	}
@@ -196,6 +169,7 @@ class MarchingSquare(
 		val triangles = triangulator.computeTriangles(vertices).toArray()
 		val polygonRegion = PolygonRegion(textureRegion, vertices, triangles)
 		val polygonSprite = PolygonSprite(polygonRegion)
+		polygonSprite.setColor(0f,1f,0f,1f)
 		polygonSprite.draw(polygonBatch)
 	}
 
@@ -216,10 +190,8 @@ class MarchingSquare(
 	}
 
 	fun dispose() {
-		greenPixMap.dispose()
-		solidGreen.dispose()
-		bluePixMap.dispose()
-		solidBlue.dispose()
+		whitePixMap.dispose()
+		whiteTexture.dispose()
 		font.dispose()
 	}
 }
